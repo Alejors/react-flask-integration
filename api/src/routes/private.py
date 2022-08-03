@@ -23,9 +23,9 @@ def get_update_profile():
         inputtedEmail = request.json.get('email')
         inputtedPassword = request.json.get('password', "")
 
-        inputtedName = request.json.get('name', "")
-        inputtedLastname = request.json.get('lastname', "")
-        inputtedUsername = request.json.get('username', "")
+        inputtedName = request.json.get('name')
+        inputtedLastname = request.json.get('lastname')
+        inputtedUsername = request.json.get('username')
 
         if not inputtedEmail: return jsonify({"status":"failed", "message": "Email cannot be empty.", "data": None}), 400
 
@@ -35,13 +35,13 @@ def get_update_profile():
         if inputtedPassword != "":
             currentUser.password = generate_password_hash(inputtedPassword)
 
-        currentUser.email = inputtedEmail
-        currentUser.profile.name = inputtedName
-        currentUser.profile.lastname = inputtedLastname
-        currentUser.profile.username = inputtedUsername
+        currentUser.email = current.email if inputtedEmail is None else inputtedEmail
+        currentUser.profile.name = currentUser.profile.name if inputtedName is None else inputtedName
+        currentUser.profile.lastname = currentUser.profile.lastname if inputtedLastname is None else inputtedLastname
+        currentUser.profile.username = currentUser.profile.username if inputtedUsername is None else inputtedUsername
 
         currentUser.update()
 
-        newData = {"user": user.serialize()}
+        newData = {"user": currentUser.serialize()}
 
         return jsonify({"status": "success", "message": "Information updated.", "data": newData}), 200

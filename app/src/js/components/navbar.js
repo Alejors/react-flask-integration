@@ -1,9 +1,11 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory } from "react-router-dom";
 import { Context } from "../store/appContext";
 
 const Navbar = () => {
-  const { store } = useContext(Context);
+
+  const { store, actions } = useContext(Context);
+  const history = useHistory();
 
   return (
     <nav className="navbar navbar-expand-lg navbar-light bg-light sticky-top">
@@ -39,8 +41,13 @@ const Navbar = () => {
               (<>
                 <li className="dropdown-item"><Link to='/login' className="text-decoration-none">Login</Link></li>
                 <li className="dropdown-item"><Link to='/register' className='text-decoration-none'>Register</Link></li>
-              </>) : 
-              <li className="dropdown-item"><Link to='/profile' className="text-decoration-none">Profile</Link></li>
+              </>) :
+              (<>
+                <li className="dropdown-item"><Link to='/profile' className="text-decoration-none">Profile</Link></li>
+                <hr />
+                <li className="dropdown-item" onClick={() => {actions.logout(history)}}> Logout </li>
+              </> 
+              )
               // (store.favorites.map((ele, i) => (
               //   <li className="d-flex dropdown-item justify-content-between" key={i}>
               //     <Link to={ele.url}>

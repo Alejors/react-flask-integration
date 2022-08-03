@@ -3,6 +3,7 @@ import injectContext from "./js/store/appContext";
 import { Home } from "./js/views/home";
 import Register from "./js/views/register";
 import Login from "./js/views/login";
+import UpdateProfile from "./js/views/updateprofile";
 import Profile from "./js/views/profile";
 import { Error } from "./js/views/error";
 
@@ -22,6 +23,7 @@ function Layout() {
             <Route exact path='/register' component={Register} />
             <Route exact path='/login' component={Login} />
             <Route exact path='/profile' component={Profile} />
+            <Route exact path='/updateprofile' component={UpdateProfile} />
             <Route component={Error}/>
           </Switch>
           <Footer />

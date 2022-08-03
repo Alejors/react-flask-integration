@@ -91,7 +91,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                         password: ''
                     })
 
-                    history.push('/');
+                    history.push('/profile');
                 }
             },
             loadProfile: () => {
@@ -102,7 +102,7 @@ const getState = ({ getStore, getActions, setStore }) => {
                     username: currentUser?.user?.profile?.username
                 })
             },
-            updateProfile: async (e) => {
+            updateProfile: async (e, history) => {
                 
                 e.preventDefault();
 
@@ -138,7 +138,20 @@ const getState = ({ getStore, getActions, setStore }) => {
                         currentUser: data,
                         password: ''
                     })
+
+                    history.push('/profile');
                 }
+            },
+            logout: (history) => {
+
+                sessionStorage.removeItem('currentUser');
+                setStore({
+                    email:'',
+                    currentUser: null
+                });
+
+                history.push('/login');
+
             },
             // addFavorite: (location, index) => {
             // 	const store = getStore();

@@ -14,7 +14,8 @@ class User(db.Model):
         return {
             "id": self.id,
             "email": self.email,
-            "banned": self.banned
+            "banned": self.banned,
+            "profile": self.profile.serialize()
         }
 
     def save(self):
@@ -41,7 +42,7 @@ class Profile(db.Model):
             "id": self.id,
             "username": self.username,
             "name": self.name,
-            "lastname": self.name,
+            "lastname": self.lastname,
             "email": self.user.email
         }
 
