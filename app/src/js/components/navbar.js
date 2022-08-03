@@ -12,7 +12,7 @@ const Navbar = () => {
       <div className="container-fluid">
         <Link className="text-decoration-none" to="/">
           <span className="navbar-brand">
-            starwars
+            Starwars
           </span>
         </Link>
         <button className="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavAltMarkup">
